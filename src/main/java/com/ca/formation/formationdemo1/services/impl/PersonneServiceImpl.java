@@ -36,7 +36,7 @@ public class PersonneServiceImpl implements PersonneService {
         }
         Personne personne = optionalPersonne.get();
         //todo verifier si l'id est le même que celui qui est dans personne
-        if(personne.getId()!=id){
+        if(id.equals(personne.getId()) ){
             System.out.println(personne.getId());
             System.out.println("test ok");
             throw new ResourceNotFoundException("Mise à jour impossible id non correspondant");
