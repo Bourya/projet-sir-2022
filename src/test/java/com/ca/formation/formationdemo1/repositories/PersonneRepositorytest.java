@@ -27,5 +27,18 @@ public class PersonneRepositorytest {
   }
 
   // TODO: ajouter un test sur les autres methodes comme delete, findByNom, etc...
-
+  @Test
+  public void findByNom() {
+    Personne personne = personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 22));
+    Personne p=personneRepository.findByNom("Ndiaye").get(0);
+    assertNotNull(p);
+    assertEquals(p.getPrenom(), "Ndeye Boury");
+  }
+  @Test
+  public void findByNomAndPrenom() {
+    Personne personne = personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 22));
+    Personne p=personneRepository.findByNomAndPrenom("Ndiaye","Ndeye Boury").get(0);
+    assertNotNull(p);
+    assertEquals(p.getAge(),22);
+  }
 }
