@@ -36,8 +36,8 @@ public class ApiPersonneController {
     public String hello(){
         return "Bonjour tout le monde";
     }
-
-    @PreAuthorize("hasAuthority('"+ Role.ADMIN+"')")
+//ADMIN
+    @PreAuthorize("hasAuthority('"+ Role.READ+"')")
     @GetMapping("/bye")
     public  String byebye(){
         return "Bye bye";

@@ -34,10 +34,12 @@ public class PersonneRepositorytest {
   public void findById() {
     Personne personne = personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 22));
     personne.setId(1L);
-    Optional<Personne> p=personneRepository.findById(1L);
-
+    Optional<Personne> p = personneRepository.findById(1L);
+    //System.out.println(p.isPresent());
     assertNotNull(p);
-   // assertEquals(p.getPrenom(), "Ndeye Boury");
+
+    //System.out.println(p.get().getPrenom());
+   //assertEquals(p.getPrenom(), "Ndeye Boury");
   }
   @Test
   public void delete(){
@@ -51,8 +53,9 @@ public class PersonneRepositorytest {
     Personne personne = personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 22));
     List<Personne> list=(List<Personne>) personneRepository.findAll();
     System.out.println(list.size());
-    List<Personne> list2=(List<Personne>) personneRepository.ageGreaterThan(22);
+    List<Personne> list2= personneRepository.ageGreaterThan(22);
     System.out.println(list2.size());
+    assertEquals(list2.size(), 2);
 
   }
   @Test

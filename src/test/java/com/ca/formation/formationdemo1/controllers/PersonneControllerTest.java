@@ -57,11 +57,10 @@ public class PersonneControllerTest {
      System.out.println(HttpHeaders.AUTHORIZATION);
      System.out.println("Bearer " + tokenRequest);
      System.out.println(headers);
-  System.out.print("le port est:"+port);
           ResponseEntity<String> response = this.restTemplate.exchange("http://localhost:" + port + "/api/v2/personnes/bye",
         HttpMethod.GET, entity, String.class);
 
-    //assertEquals(response.getBody(), "Bye bye");
+    assertEquals(response.getBody(), "Bye bye");
   }
 
   @Test
@@ -145,7 +144,7 @@ public class PersonneControllerTest {
   @Before
   public void login() throws Exception {
     String body = "{\n" +
-        "    \"username\": \"clara@formation.ca\",\n" +
+        "    \"username\": \"michel@formation.sn\",\n" +
         "    \"password\": \"Passer@123\"\n" +
         "}";
     RequestBuilder requestBuilder = MockMvcRequestBuilders
