@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -31,12 +32,28 @@ public class PersonneRepositorytest {
   // TODO: ajouter un test sur les autres methodes comme delete, findByNom, etc...
   @Test
   public void findById() {
-    /*Personne personne = personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 22));
+    Personne personne = personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 22));
     personne.setId(1L);
     Optional<Personne> p=personneRepository.findById(1L);
-    //Personne pers=p;
+
     assertNotNull(p);
-    assertEquals(p.getPrenom(), "Ndeye Boury");*/
+   // assertEquals(p.getPrenom(), "Ndeye Boury");
+  }
+  @Test
+  public void delete(){
+    Personne personne = personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 22));
+    personne.setId(1L);
+    personneRepository.delete(personne);
+    Optional<Personne> p=personneRepository.findById(1L);
+    assertEquals(p, Optional.empty());
+  }
+  public void ageGreaterThan(){
+    Personne personne = personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 22));
+    List<Personne> list=(List<Personne>) personneRepository.findAll();
+    System.out.println(list.size());
+    List<Personne> list2=(List<Personne>) personneRepository.ageGreaterThan(22);
+    System.out.println(list2.size());
+
   }
   @Test
   public void findByNom() {
@@ -51,5 +68,15 @@ public class PersonneRepositorytest {
     Personne p=personneRepository.findByNomAndPrenom("Ndiaye","Ndeye Boury").get(0);
     assertNotNull(p);
     assertEquals(p.getAge(),22);
+  }
+  @Test
+  public void findAll() {
+    Personne personne = personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 22));
+    personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 23));
+    personneRepository.save(new Personne("Ndiaye", "Ndeye Boury", 24));
+    List<Personne> list=(List<Personne>) personneRepository.findAll();
+   System.out.println(list.size());
+    assertNotNull(list);
+    assertEquals(list.size(),5);
   }
 }

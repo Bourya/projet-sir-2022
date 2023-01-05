@@ -61,12 +61,15 @@ public class Utilisateur implements UserDetails, Serializable {
 
     @Override
     public boolean isAccountNonLocked() {
-        return enabled;
+        return isEnabled();
+        //return enabled;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return enabled;
+
+        //return enabled;
+        return isEnabled();
     }
 
     public void setUsername(String username) {
